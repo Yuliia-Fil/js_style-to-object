@@ -12,28 +12,8 @@ function convertToObject(sourceString) {
     .reduce((obj, key) => {
       const [prop, value] = key.split(':').map((el) => el.trim());
 
-      function kebabToCamel(string) {
-        if (string && string.includes('-')) {
-          return string
-            .split('-')
-            .map((word, index) => {
-              if (index === 0) {
-                return word.toLowerCase();
-              }
-
-              return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-            })
-            .join('');
-        }
-
-        return string;
-      }
-
-      const camelProp = kebabToCamel(prop);
-      const camelValue = kebabToCamel(value);
-
-      if (camelProp) {
-        obj[camelProp] = camelValue;
+      if (prop) {
+        obj[prop] = value;
       }
 
       return obj;
